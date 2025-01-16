@@ -65,21 +65,41 @@
                         <a class="nav-link" href="{% url 'home' %}" >Home</a>
                     </li>
                     {% if request.user.is_authenticated %}
-                   
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dash' %}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">logout</a>
-                    </li>
-                    {% else %}
+
+                        {% if request.user.is_student %}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'student_dash' %}">Dashboard</a>
+                            </li>
+                        {% elif request.user.is_teacher %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'teacher_dash' %}">Dashboard</a>
+                            </li>
+                        {% elif request.user.is_superuser %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'admin_dash' %}">Admin Dashboard</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'user_dash' %}">Dashboard</a>
+                            </li>
+
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">logout</a>
+                            </li>
+                        
+                            
+                        
+                       {% else  %}         
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'reg' %}">register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}" >login</a>
                     </li>
-                    {% endif %}
+                {% endif %}
+
                 </ul>
             </div>
         </div>
