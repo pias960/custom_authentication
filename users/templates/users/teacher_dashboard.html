@@ -1,0 +1,8 @@
+{%extends 'account/base.html' %}
+
+{% block content %}
+    <h1>Teacher Dashboard</h1>
+    <p>This is the profile page for user {{ request.user.name }}</p>
+    <a href="{% url 'pass_change' %}">Change the password</a>
+   
+{% endblock content %}
